@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
     int n[100]={0};
     int temp;
     while (1) {
-        printf("Scegli un'opzione:\n[1]Inserisci elementi nell'array\n[2]Stampa tutti gli elementi dell'array\n[3]Ricerca un elemento nell'array\n[4]Trova il minimo nell'array\n[5]Ordina l'array\n[altro]Esci\n");
+        printf("Scegli un'opzione:\n[1]Inserisci elementi nell'array\n[2]Stampa tutti gli elementi dell'array\n[3]Ricerca un elemento nell'array\n[4]Trova il minimo nell'array\n[5]Ordina l'array\n[6]Elimina un elemento dell'array\n[7]Aggiungi un singolo elemento\n[altro]Esci\n");
         scanf("%d",&scelta);
         switch(scelta) {
             case 1:
@@ -32,13 +32,18 @@ int main(int argc, char *argv[]) {
                 ordinaArray(n,elements);
                 printf("Ordinamento eseguito\n");
                 break;
+            case 6:
+                printf("Inserisci l'elemento da eliminare: ");
+                scanf("%d",&temp);
+                delElemArray(n,elements,temp);
+                elements--;
+                break;
+            case 7:
+                input_array(n,1);
+                elements++;
+                break;
             default:
                 return 0;
         }
     }
 }
-/*
-Mancano:
-[6]Elimina un elemento dell'array
-[7]Aggiungi un singolo elemento dell'array
-*/

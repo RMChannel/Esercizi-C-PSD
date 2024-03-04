@@ -15,8 +15,14 @@ void input_array(int a[],int n) {
 
 void output_array(int a[],int n) {
     int i=0;
-    for (;i<n;i++) printf("%d: %d\n",i+1,a[i]);
-    if (i==0) printf("Nessun elemento nell'array\n");
+    if (n==0) printf("Nessun elemento nell'array\n");
+    else {
+        do {
+            printf("%d: %d\n",i+1,a[i]);
+            i++;
+        } while (i<n);
+    }
+    
 }
 
 void ricerca_array(int a[], int n, int max) {
@@ -49,5 +55,19 @@ void ordinaArray(int *a,int n) {
     for (int i=0;i<(n-1);i++) {
         min=min_array(a+i,n-i)+i;
         swap(&a[min],&a[i]);
+    }
+}
+
+void delElemArray(int *a, int n, int elem) {
+    int i=0;
+    for (;i<n && a[i]!=elem;i++);
+    if (i==n) printf("Elemento non trovato\n");
+    else {
+        a[i]=0;
+        while ((i+1)<n) {
+            a[i]=a[i+1];
+            i++;
+        }
+        a[i+1]=0;
     }
 }
