@@ -8,4 +8,4 @@ main.o:
 	gcc -c main.c
 
 clean:
-	rm -f main.o vettore.o vettore.exe
+	rm -f main.o vettore.o vettore.out
