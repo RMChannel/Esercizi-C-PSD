@@ -37,4 +37,7 @@ int main(int argc, char *argv[]) {
         input_array_str(n_oracle,line,&pos); //mi salvo l'array di oracle
         fprintf(fp_output,"Test %d: %d\n",i,controlloOracleArray(n_input1,n_oracle,imax1)); //stampo il controllo nel file di output
     }
+    fclose(fp_input);
+    fclose(fp_oracle);
+    fclose(fp_output);
 }

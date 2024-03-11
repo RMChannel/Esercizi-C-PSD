@@ -33,4 +33,7 @@ int main(int argc, char *argv[]) {
         n_oracle=getresult(line); //salvo il valore di controllo
         fprintf(fp_output,"Test %d: %d\n",i, (n_oracle==result)); //stampo il controllo nel file di output
     }
+    fclose(fp_input);
+    fclose(fp_oracle);
+    fclose(fp_output);
 }
