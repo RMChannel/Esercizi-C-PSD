@@ -1,5 +1,12 @@
 {
     "files.associations": {
-        "point.h": "c"
+        "point.h": "c",
+        "__split_buffer": "c",
+        "array": "c",
+        "bitset": "c",
+        "initializer_list": "c",
+        "string": "c",
+        "string_view": "c",
+        "vector": "c"
     }
 }
