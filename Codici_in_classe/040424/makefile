@@ -1,8 +1,8 @@
 int: list.o main.o item_int.o stack_array.o
-	gcc list.o item_int.o main.o stack_array.o -o stack.out
+	gcc list.o item_int.o main.o stack_array.o -o stack.exe
 
 string: list.o main.o item_string.o stack_array.o
-	gcc list.o item_string.o main.o stack_array.o -o stack.out
+	gcc list.o item_string.o main.o stack_array.o -o stack.exe
 
 stack_array.o:
 	gcc -c stack_array.c
@@ -23,4 +23,4 @@ list.o:
 	gcc -c list.c
 
 clean:
-	rm -f *.o *.out
+	rm -f *.o *.exe
