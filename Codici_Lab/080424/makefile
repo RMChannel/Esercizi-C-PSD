@@ -1,5 +1,5 @@
 song: item_song.o list.o main.o song.o playlist.o
-	gcc item_song.o list.o main.o song.o playlist.o -o main.exe -Wall
+	gcc item_song.o list.o main.o song.o playlist.o -o main.exe
 
 int: item_int.o list.o main2.o
 	gcc item_int.o list.o main2.o -o main.exe

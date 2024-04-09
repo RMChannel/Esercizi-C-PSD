@@ -21,8 +21,10 @@ void addSong(Playlist playlist, Song song) { //Aggiunge una canzone alla playlis
     addHead(playlist->list,song);
 }
 
-void removeSong(Playlist playlist, Song song) { //Rimuove una canzone dalla playlist
-    removeListItem(playlist->list,song);
+void removeSong(Playlist playlist, char *title) { //Rimuove una canzone dalla playlist, partendo dal titolo creiamo un canzone con solo il titolo e facciamo l'eliminazione dalla lista, perché il cmpitem controlla solo il titolo della canzone e di conseguenza fa la ricerca a noi necessaria.
+    Song songSearch=initSong(title,"",0);
+    removeListItem(playlist->list,songSearch);
+    free(songSearch);
 }
 
 void sortPlaylist(Playlist playlist) { //Ordina la playlist

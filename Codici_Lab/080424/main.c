@@ -14,4 +14,5 @@ int main(int argc, char *argv) {
     sortPlaylist(playlist); //ordino la playlist e la stampo
     printf("\n\n");
     printPlaylist(playlist);
+    free(playlist);
 }
