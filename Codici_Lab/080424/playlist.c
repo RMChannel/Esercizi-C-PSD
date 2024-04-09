@@ -32,6 +32,5 @@ void sortPlaylist(Playlist playlist) { //Ordina la playlist
 }
 
 void printPlaylist(Playlist playlist) { //Stampa ogni canzone con titolo, artista e durata
-    struct node *p;
     printList(playlist->list);
 }
