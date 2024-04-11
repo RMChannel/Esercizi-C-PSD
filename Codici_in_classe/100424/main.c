@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include "item.h"
 #include "queue.h"
+#include "list.h"
+
+
 
 int main(){
 	Queue queue=newQueue();
