@@ -1,5 +1,4 @@
 #include "item.h"
-#define MAXSTACK 50
 
 typedef struct stack *Stack;
 
