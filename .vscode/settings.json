@@ -10,6 +10,8 @@
         "vector": "c",
         "stdlib.h": "c",
         "stdio.h": "c",
-        "time.h": "c"
+        "time.h": "c",
+        "list.h": "c",
+        "libreria.h": "c"
     }
 }

@@ -12,14 +12,28 @@ Item newItem(char *word) {  //Funzione di creazione item, partendo da una string
 }
 
 void reverseStack(Stack *stackOrigin, Item param) { //Funzione che restituisce, sul puntatore dello Stack originale, lo Stack invertito e confrontato col parametro
-	Stack stackNew=newStack(); //Creo un nuovo stack
+	Item temp[50]; //Array temporaneo
+	int i;
 	Item item;
-	while(!(isEmptyStack(*stackOrigin))) { //Ciclo finché lo stack originale è vuoto, così prendo sicuramente tutti gli elementi dello stack
+	for(i=0;!(isEmptyStack(*stackOrigin));pop(*stackOrigin)) { //Scorro tutto lo stack finché esso non vuoto, eliminando ogni volta che controllo l'elemento verificato col parametro
 		item=top(*stackOrigin);
-		if(compareItem(item,param)>0) push(stackNew,item); //Nel caso in cui rispetta la condizione col parametro, allora viene inserito nel nuovo stack
-		pop(*stackOrigin); //Altrimenti non viene considerato e viene rimosso
+		if(compareItem(item,param)>0) { //Verifica col parametro
+			temp[i]=item; //Mi salvo l'elemento
+			i++; //Incremento il numero di elementi salvati
+		}
 	}
-	*stackOrigin=stackNew; //Lo stack originale ora punta al nuovo stack calcolato
+	for(int i2=0;i2<i;i2++) push(*stackOrigin,temp[i2]); //Rimetto gli elementi nello stackS
+}
+
+int countEquals(Stack *stack, Item param) { //Funzione che restituisce il numero di elementi, presenti nello stack, uguali al parametro passato
+	Item item;
+	int count=0;
+	while(!(isEmptyStack(*stack))) { //Scorro tutto lo stack, eliminando ogni elemento che confronto, finché lo stack non è vuoto
+		item=top(*stack); //Prendo l'elemento
+		if (!(compareItem(item,param))) count++; //Nel caso in cui la compareitem restituisce 0, allora i due elementi sono sicuramente uguali e allora posso fare il conto
+		pop(*stack); //Rimuovo l'elemento
+	}
+	return count;
 }
 
 
@@ -53,6 +67,7 @@ int main() { // non modificare/spostare questa riga
 		reverseStack(&stack,param);
 		printStack(stack);
 		printf("\n\n");
+		//printf("\nElementi uguali trovati al parametro: %d\n",countEquals(&stack,param));
 		free(stack); //Libero lo stack
 	}
 }
