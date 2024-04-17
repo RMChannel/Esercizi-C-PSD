@@ -1,0 +1,3 @@
+stem1 Marco Rossi 80 Laura Bianchi 65
+stem2 Marco Rossi 80 Laura Bianchi 65 Luca Verdi 90 
+stem3 Marco Rossi 80 Laura Bianchi 65 Luca Verdi 90 Giorgia Neri 75 Alessio Gialli 85

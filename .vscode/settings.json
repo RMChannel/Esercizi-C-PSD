@@ -12,6 +12,7 @@
         "stdio.h": "c",
         "time.h": "c",
         "list.h": "c",
-        "libreria.h": "c"
+        "libreria.h": "c",
+        "item.h": "c"
     }
 }
