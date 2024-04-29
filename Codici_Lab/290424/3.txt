@@ -1,0 +1,15 @@
+destroyNode:
+Questa funzione ha complessità lineare O(n), perché scorre tutti i nodi
+e li cancella passo passo
+
+countItemNode:
+Questa funzione ha complessità lineare O(n), percHé scorre tutti i nodi
+e li controlla passo passo
+
+searchNode:
+Questa funzione ha complessità lineare O(n)
+(nel caso peggiore, altrimenti finché non trova l'elemento cercato),
+
+printNode:
+Questa funzione ha complessità lineare O(n), perché scorre tutti i nodi
+e li stampa passo passo
