@@ -42,18 +42,20 @@ void selectionSort(int *a, int n){ //SPIEGATO IN UN ALTRO FILE
 	}
 }
 
+//Questa funzione è quella richiamata n-1 volte da insertionSort e si occupa dei vari scambi di posizione
 void insertSortedArray(int *a, int *n, int val) {
-    int i;
-    for (i=*n;i>0 && val<a[i-1];i--) {
-        a[i]=a[i-1];
+    int i; //Ci creiamo un variabile indice che inizializzeremo col valore di n
+    for (i=*n;i>0 && val<a[i-1];i--) { //Scorriamo tutto l'array all'indietro finché o si arriva alla 1°posizione ed è quindi l'elemento più piccolo
+        a[i]=a[i-1]; //o perché sono finiti gli elementi più grandi dell'elemento preso in considerazione
     }
-    a[i]=val;
-    (*n)++;
+    a[i]=val; //In ognuno di questi casi, finiti gli scambi di posizione verso destra, posizioniamo il valore che avevamo preso in considerazione
+    (*n)++; //Incrementiamo n (che corrisponde ad i nell'altra funzione)
 }
 
+//Questa funzione fa da richiamo a quella di ordinamento e permette di ordinare tutti gli elementi dell'array grazie al ciclo al suo interno
 void insertionSort(int *a, int n) {
-	for (int i=1;i<n;) {
-		insertSortedArray(a,&i,a[i]);
+	for (int i=1;i<n;) { //Passiamo per ogni elemento dell'array, partendo dal 2°elemento, perché il 1°elemento verrà spostato passo passo che vengono ordinati i valori (nel caso sia maggiore di essi)
+		insertSortedArray(a,&i,a[i]); //Richiamiamo la funzione passandogli l'array, un valore passato per indirizzo che farà da indice e il valore da ordinare in quel momento
 	}
 }
 
