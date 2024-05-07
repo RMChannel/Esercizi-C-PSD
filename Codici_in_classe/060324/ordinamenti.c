@@ -18,7 +18,7 @@ void outputArray(int *a, int n){
 	printf("\n");
 }
 
-int minimo(int *a, int n){
+int minimo(int *a, int n){ //SPIEGATO IN UN ALTRO FILE
 	int i;
 	int min = 0;
 	for(i=1; i<n; i++){
@@ -28,13 +28,13 @@ int minimo(int *a, int n){
 	return min;
 }
 
-void swap(int *a, int *b){
+void swap(int *a, int *b){ //SPIEGATO IN UN ALTRO FILE
 	int temp = *a;
 	*a=*b;
 	*b=temp;
 }
 
-void selectionSort(int *a, int n){
+void selectionSort(int *a, int n){ //SPIEGATO IN UN ALTRO FILE
 	int i, min;
 	for(i=0; i<n-1; i++){
 		min = minimo(a+i, n-i)+i;
