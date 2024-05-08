@@ -59,27 +59,24 @@ void insertionSort(int *a, int n) {
 	}
 }
 
-void bubbleSort(int *a, int n) {
-	for (int i=1;i<n;i++)
-		for (int j=0;j<(n-i);j++)
-			if (a[j]>a[j+1])
+void bubbleSort(int *a, int n) { //Prendiamo in input l'array e la sua dimensione
+	for (int i=1;i<n;i++) //Il 1°ciclo ci permette di ripetere le operazioni del scambio del maggiore per tutti gli elementi di n, partendo da 1 per il discorso di prima che l'ultimo elemento non è da scambiare/ordinare
+		for (int j=0;j<(n-i);j++) //2°ciclo che lavora su tutti gli elementi dell'array, fa fino ad n-i perché ad ogni iterazione del 1°ciclo abbiamo ordinato un elemento, quindi dobbiamo lasciarlo stare
+			if (a[j]>a[j+1]) //Se l'elemento precedente è maggiore del successivo, allora si fa lo scambio
 				swap(&a[j],&a[j+1]);
 }
 
-int adaptiveBubbleSort(int *a, int n) {
-	int ordinato=FALSE;
-	int operazioni=0;
+void adaptiveBubbleSort(int *a, int n) { //Prendiamo in input l'array e la sua dimensione
+	int ordinato=FALSE; //A differenza dell'altro algoritmo, ci creiamo anche una variabile bool (vero/falso) e la inizializziamo a false
 	for (int i=1;i<n && !ordinato;i++) {
-		ordinato=TRUE;
+		ordinato=TRUE; //Ad ogni iterazione la impostiamo a true, perché ad ogni iterazione è possibile che lista sia già ordinata
 		for (int j=0;j<(n-i);j++) {
-			operazioni++;
 			if (a[j]>a[j+1]) {
 				swap(&a[j],&a[j+1]);
-				ordinato=FALSE;
+				ordinato=FALSE;// nel caso in cui venga effettuato uno scambio, allora impostiamo la variabile a false, perché vuol dire che l'array non era già ordinato e va ricontrollato
 			}
 		}
 	}
-	return operazioni;
 }
 
 int main()
@@ -88,7 +85,6 @@ int main()
 	int n = 5;
 	int val;
 	inputArray(array, n);
-	printf("N Operazioni: %d\n",adaptiveBubbleSort(array, n));
 	outputArray(array, n);
 
 	return 0;
