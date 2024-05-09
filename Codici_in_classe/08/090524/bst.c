@@ -57,7 +57,7 @@ Item min(BST tree) {
 Item max(BST tree) {
   if(isEmptyBST(tree)) return NULL;
   else if(isEmptyBST(tree->right)) return tree->value;
-  else return min(tree->right);
+  else return max(tree->right);
 }
 
 void insertBST(BST *tree, Item item) {
@@ -72,7 +72,33 @@ void insertBST(BST *tree, Item item) {
 }
 
 Item deleteBST(BST *tree, Item item) {
-
+  if (isEmptyBST(*tree)) return NULL;
+  else if (cmpItem(item,(*tree)->value)<0) return deleteBST(&(*tree)->left,item);
+  else if (cmpItem(item,(*tree)->value)>0) return deleteBST(&(*tree)->right,item);
+  else {
+    if (isEmptyBST((*tree)->left)) {
+      Item tempItem=(*tree)->value;
+      BST tempBST=(*tree);
+      (*tree)=(*tree)->right;
+      free(tempBST);
+      return tempItem;
+    }
+    else if (isEmptyBST((*tree)->right)) {
+      Item tempItem=(*tree)->value;
+      BST tempBST=(*tree);
+      (*tree)=(*tree)->left;
+      free(tempBST);
+      return tempItem;
+    }
+    else {
+      Item maxItem=max((*tree)->left);
+      Item tempItem=(*tree)->value;
+      BST tempBST=(*tree);
+      (*tree)->value=maxItem;
+      deleteBST(&((*tree)->left),maxItem);
+      return tempItem;
+    }
+  }
 }
 
 void printLevel(BST tree) {

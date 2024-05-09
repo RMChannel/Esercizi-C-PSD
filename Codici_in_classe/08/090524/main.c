@@ -13,9 +13,10 @@ int main(){
 	outputItem(min(tree));
 	printf("\nMax= ");
 	outputItem(max(tree));
+	deleteBST(&tree,max(tree));
+	printf("\nMax= ");
+	outputItem(max(tree));
 	printf("\n");
-	if(search(tree,&tree)==NULL) printf("Non presente\n");
-	else printf("Presente\n");
 	printLevel(tree);
 	printf("\n");
 }
