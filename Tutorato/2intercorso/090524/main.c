@@ -33,7 +33,6 @@ int main(int argc, char *argv[]) {
         exit(EXIT_FAILURE);
     }
     char line[100];
-    Stack stack=newStack();
     while(fgets(line,sizeof(line),fp)) {
         char *lineP=line;
         int control=1;
@@ -57,7 +56,6 @@ int main(int argc, char *argv[]) {
                 number1=operation;
                 number2=newTree();
                 control=0;
-                push(stack,operation);
             }
         }
         inOrderInMain(operation,operation);
