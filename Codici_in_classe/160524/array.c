@@ -124,29 +124,29 @@ int ricercaBinariaR(int a[], int n, int elem) {
 }
 
 void merge(int a1[], int a2[],int n1, int n2, int a[]) {
-	int i,j,k, copia[n1+n2];
-	for(i=0,j=0,k=0;i<n1 && j<n2;k++) {
-		if (a1[i]<=a2[j]) {
+	int i,j,k, copia[n1+n2]; //Ci creiamo 3 contatori, insieme ad un array di dimensione uguale alla somma delle dimensioni degli array passati
+	for(i=0,j=0,k=0;i<n1 && j<n2;k++) { //Scorriamo l'array copia, così da salvare in modo ordinato gli elementi degli array passati
+		if (a1[i]<=a2[j]) { //Se l'elemento del 1°array è minore o uguale a quello del 2°, allora copia il 1° e scorro avanti
 			copia[k]=a1[i];
 			i++;
 		}
-		else {
+		else { //In caso contrario, prendo l'elemento del 2°array
 			copia[k]=a2[j];
 			j++;
 		}
 	}
-	for(;i<n1;i++,k++) copia[k]=a1[i];
-	for(;j<n2;j++,k++) copia[k]=a2[j];
-	for(k=0;k<(n1+n2);k++) {
-		a[k]=copia[k];
+	for(;i<n1;i++,k++) copia[k]=a1[i]; //Dopo aver preso tutti gli elementi dal ciclo di prima, potrebbe accadere che uno degli array abbia elementi in più rispetto all'altro
+	for(;j<n2;j++,k++) copia[k]=a2[j]; //E per risolvere il problema, facciamo una copia di tutti gli elementi rimanenti nell'array copia
+	for(k=0;k<(n1+n2);k++) { //Poi, ricordiamo che noi passiamo alla funzione anche un array a (dove viene salvato l'array formato dall'insieme degli altri 2)
+		a[k]=copia[k]; //Allora copiamo in a l'array copia
 	}
 }
 
 void mergeSort(int a[], int n) {
-	if (n>1) {
-		mergeSort(a,n/2);
-		mergeSort(a+(n/2),(n-(n/2)));
-		merge(a,(a+(n/2)),n/2,(n-(n/2)),a);
+	if (n>1) { //Controllo che il numero degli elementi è maggiore di 1
+		mergeSort(a,n/2); //Se si, allora richiamo la stessa funzione, però con la metà a sinistra
+		mergeSort(a+(n/2),(n-(n/2)));//Richiamo la stessa funzione, ma con la metà a destra
+		merge(a,(a+(n/2)),n/2,(n-(n/2)),a); //Infine facciamo il merge tra i due sottoarray formati (questo ogni volta dopo aver diviso tutti i sottoarray)
 	}
 }
 
