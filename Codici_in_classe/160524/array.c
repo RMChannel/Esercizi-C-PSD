@@ -150,34 +150,42 @@ void mergeSort(int a[], int n) {
 	}
 }
 
+/*
+Questa funzione si occupa di trovare il pivot (attraverso la ricerca della media dei 3 e di fare lo scambio tra i due elementi first e last e restituisce il nuovo pivot.
+Essa prende in input l'array, l'elemento iniziale e quello finale
+*/
 int partition(int a[], int first, int last) {
-	int i=first-1, j=last+1, pivot=a[first];
+	int i=first-1, j=last+1, pivot=a[first]; //Incrementiamo/Decremntiamo last e first perché li incrementiamo o decrementiamo poi nel ciclo almeno una volta
 	while(1) {
 		do {
-			j--;
+			j--; //Decrementiamo j finché il valore corrispondente non è maggiore al pivot
 		} while(a[j]>pivot);
 		do {
-			i++;
+			i++; //Incrementiamo i finché il valore corrispondente non è minore al pivot
 		} while(a[i]<pivot);
-		if (i>=j) return j;
-		swap(&a[i],&a[j]);
+		if (i>=j) return j; //Nel caso i e j si incontrano, terminiamo e restituiamo j
+		swap(&a[i],&a[j]); //Ogni volta che facciamo questo ciclo, fai lo swap tra a[i] e a[j]
 	}
 }
 
+/*
+Questa funziona è quella che svolge il lavoro di QuickSort.
+Prende in input l'array da ordinare, l'indice del 1°elemento e l'indice dell'ultimo elemento (all'inizio corrispondono con quelli dell'array, poi ai vari richiami corrispondono agli indirizzi dei sotto-array)
+*/
 void qSort(int a[], int first, int last) {
-	if (first<last) {
-		int pivot=partition(a,first,last);
-		qSort(a,first,pivot);
-		qSort(a,pivot+1,last);
+	if (first<last) { //Se l'indice dell'inizio e della fine non si sono incontrati ancora
+		int pivot=partition(a,first,last); //Allora chiamo partition
+		qSort(a,first,pivot); //E richiamo il quicksort al sottoarray sinistro
+		qSort(a,pivot+1,last); //E richiamo il quicksort al sottoarray destro
 	}
 }
 
-void quickSort(int a[], int n) {
+void quickSort(int a[], int n) { //Funzione di richiamo per la vera funzione di quickSort
 	qSort(a,0,n-1);
 }
 
 int main(){
-	int a[N]={100, 99, 98, 97, 95, 94, 93, 92, 91, 90, 89, 88, 87, 82, 81, 80, 79, 77, 76, 75, 74, 72, 71, 70, 69, 68, 67, 66, 65, 64, 63, 61, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 46, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+	int a[N]={100, 99, 98, 97, 95, 94, 93, 92, 91, 90, 89, 88, 87, 82, 81, 80, 79, 78, 77, 76, 75, 74, 72, 71, 70, 69, 68, 67, 66, 65, 64, 63, 61, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 46, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 	//inputArray(a,N);
 	quickSort(a,N);
 	outputArray(a,N);
