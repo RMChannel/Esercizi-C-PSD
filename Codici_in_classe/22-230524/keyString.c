@@ -5,7 +5,9 @@
 #define NUMCHAR 20
 
 int equals(Key key1, Key key2) {
-    return !strcmp(key1,key2);
+    char *c1=key1;
+    char *c2=key2;
+    return !strcmp(c1,c2);
 }
 
 int hashValue(Key k, int m) {
