@@ -1,5 +1,5 @@
-link: main.o playlist.o song.o list.o
-	gcc main.o playlist.o song.o list.o -o main.exe
+link: main.o playlist.o song.o
+	gcc main.o playlist.o song.o -o main.exe
 
 main.o:
 	gcc -c main.c
@@ -9,9 +9,6 @@ playlist.o:
 
 song.o:
 	gcc -c song.c
-
-list.o:
-	gcc -c list.c
 
 clean:
 	rm -f *.exe *.o

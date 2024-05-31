@@ -2,30 +2,42 @@
 #include <stdlib.h>
 #include "playlist.h"
 #include "song.h"
-#include "list.h"
 
 struct playlist{
-    List list;
+    Song songs[100];
     Song reproducing;
+    int size;
 };
 
 Playlist newPlaylist() {
     Playlist playlist=malloc(sizeof(Playlist));
-    playlist->list=newList();
     playlist->reproducing=NULL;
+    playlist->size=0;
     return playlist;
 }
 
 void addSong(Playlist playlist, Song song) {
-    addHead(playlist->list,song);
+    int i;
+    for(i=0;i<playlist->size;i++);
+    playlist->songs[i]=song;
+    playlist->size++;
 }
 
 void removeSong(Playlist playlist, Song song) {
-    removeListSong(playlist->list,song);
+    for(int i=0;i<playlist->size;i++) {
+        if (song==playlist->songs[i]) {
+            for(;i<playlist->size;i++) {
+                playlist->songs[i]=playlist->songs[i+1];
+            }
+            break;
+        }
+    }
+    playlist->size--;
 }
 
 void printPlaylist(Playlist playlist) {
-    printList(playlist->list);
+    printf("%d",playlist->size);
+    for(int i=0;i<playlist->size;i++) printSong(playlist->songs[i]);
 }
 
 int isReproducing(Playlist playlist) {
@@ -37,11 +49,20 @@ void stop(Playlist playlist) {
 }
 
 void riproduci(Playlist playlist, Song song) {
-    if(existSong(playlist->list,song))  playlist->reproducing=song;
+    Song temp=playlist->reproducing;
+    int i;
+    for(i=0;i<playlist->size;i++) if(temp==playlist->songs[i]) break;
+    i++;
+    temp=playlist->songs[i];
+    if(temp!=NULL)  playlist->reproducing=song;
 }
 
 void skip(Playlist playlist) {
-    Song temp=getNext(playlist->list,playlist->reproducing);
+    Song temp=playlist->reproducing;
+    int i;
+    for(i=0;i<playlist->size;i++) if(temp==playlist->songs[i]) break;
+    i++;
+    temp=playlist->songs[i];
     if(temp==NULL) printf("Nessuna canzone rimasta nella playlist\n");
     else playlist->reproducing=temp;
 }

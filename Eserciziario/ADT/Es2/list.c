@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "song.h"
+#include "libro.h"
 #include "list.h"
 
 
@@ -10,7 +10,7 @@ struct list {
 };
 
 struct node {
-	Song song;
+	Libro libro;
 	struct node *next;
 };
 
@@ -25,28 +25,28 @@ int isEmpty(List list) {
     return (list->size==0);
 }
 
-void addHead(List list, Song song) {
+void addHead(List list, Libro libro) {
     struct node *new_node = malloc(sizeof(struct node));
-    new_node->song=song;
+    new_node->libro=libro;
     new_node->next=list->head;
     list->head=new_node;
     ++(list->size);
 }
 
-Song removeHead(List list) {
+Libro removeHead(List list) {
     if (isEmpty(list))
     		return NULL;
     struct node *temp_node = list->head;
     list->head=temp_node->next;
-    Song song=temp_node->song;
+    Libro libro=temp_node->libro;
     free(temp_node);
     --(list->size);
-    return song;
+    return libro;
 }
 
-Song getHead(List list){
+Libro getHead(List list){
     if (isEmpty(list)) return NULL;
-    return list->head->song;
+    return list->head->libro;
 }
 
 int sizeList(List list){
@@ -54,29 +54,29 @@ int sizeList(List list){
 }
 
 void printList(List list) {
-	for(struct node *m=list->head;m!=NULL;m=m->next) printSong(m->song);
+	for(struct node *m=list->head;m!=NULL;m=m->next) printLibro(m->libro);
 }
 
-int existSong(List list, Song song) {
+int existLibro(List list, Libro libro) {
 	for(struct node *m=list->head;m!=NULL;m=m->next) {
-		if(m->song==song) return 1;
+		if(m->libro==libro) return 1;
 	}
 	return 0;
 }
 
-int addListSong(List list, Song song, int pos){
+int addListLibro(List list, Libro libro, int pos){
 	if(pos<0 || pos> sizeList(list)){
 		fprintf(stderr,"posizione non valida");
 		return 0;
 	}
 
 	if(pos==0){
-		addHead(list,song);
+		addHead(list,libro);
 		return 1;
 	}
 
 	struct node *m,*succ,*n=malloc(sizeof(struct node));
-	n->song=song;
+	n->libro=libro;
 
 	int posizione=0;
 	for(m=list->head;m!=NULL && posizione<pos-1;m=m->next,posizione++);
@@ -87,21 +87,21 @@ int addListSong(List list, Song song, int pos){
 	return 1;
 }
 
-int addListTail(List list, Song song) {
-	return addListSong(list,song,sizeList(list));
+int addListTail(List list, Libro libro) {
+	return addListLibro(list,libro,sizeList(list));
 }
 
-Song removeListSong(List list, Song song) {
-	Song temp;
+Libro removeListLibro(List list, Libro libro) {
+	Libro temp;
 	if (isEmpty(list))
 		return NULL;
 	struct node *p,*prev;
     for (p=list->head; p!=NULL; prev=p, p=p->next){
-       if (song==p->song){
+       if (libro==p->libro){
 			if(p==list->head)
 				return removeHead(list);
 			prev->next = p->next;
-			temp = p->song;
+			temp = p->libro;
 			free (p);
 			list->size--;
 			return temp;
@@ -111,11 +111,11 @@ Song removeListSong(List list, Song song) {
 	return NULL;
 }
 
-Song getNext(List list, Song song) {
+Libro getNext(List list, Libro libro) {
 	struct node *m;
 	for(m=list->head;m!=NULL;m=m->next) {
-		if(m->song==song) break;
+		if(m->libro==libro) break;
 	}
 	if(m==NULL || m->next==NULL) return NULL;
-	return m->next->song;
+	return m->next->libro;
 }

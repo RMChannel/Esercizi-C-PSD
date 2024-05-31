@@ -11,9 +11,11 @@ int main() {
     addSong(playlist,song);
     addSong(playlist,song2);
     addSong(playlist,song3);
+    removeSong(playlist,song2);
     riproduci(playlist,song3);
     skip(playlist);
     skip(playlist);
     skip(playlist);
+    printPlaylist(playlist);
     return 0;
 }
