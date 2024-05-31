@@ -23,7 +23,8 @@
         "type_traits": "c",
         "utility": "c",
         "cstdlib": "c",
-        "random": "c"
+        "random": "c",
+        "song.h": "c"
     },
     "makefile.makefilePath": "C:\\Users\\User\\Documents\\GitHub\\Esercizi-C-PSD\\Codici_in_classe\\080524\\makefile"
 }
