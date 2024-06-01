@@ -27,7 +27,8 @@
         "song.h": "c",
         "libro.h": "c",
         "contatto.h": "c",
-        "rubrica.h": "c"
+        "rubrica.h": "c",
+        "stack.h": "c"
     },
     "makefile.makefilePath": "C:\\Users\\User\\Documents\\GitHub\\Esercizi-C-PSD\\Codici_in_classe\\080524\\makefile"
 }
