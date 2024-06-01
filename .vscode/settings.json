@@ -25,7 +25,9 @@
         "cstdlib": "c",
         "random": "c",
         "song.h": "c",
-        "libro.h": "c"
+        "libro.h": "c",
+        "contatto.h": "c",
+        "rubrica.h": "c"
     },
     "makefile.makefilePath": "C:\\Users\\User\\Documents\\GitHub\\Esercizi-C-PSD\\Codici_in_classe\\080524\\makefile"
 }
