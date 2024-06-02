@@ -21,4 +21,4 @@ List cloneListItem(List);
 void selectionSort(List list);
 void bubbleSort(List list);
 void selectionRSort(List list);
-List callMergeSort(List list);
+void sortList(List list);

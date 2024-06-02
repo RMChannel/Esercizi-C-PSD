@@ -20,6 +20,7 @@ int main(){
 	addHead(list,n3);
 	addHead(list,n4);
 	addHead(list,n5);
-	printList(callMergeSort(list));
+	sortList(list);
+	printList(list);
 	return 0;
 }
