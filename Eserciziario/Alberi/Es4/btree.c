@@ -187,3 +187,10 @@ void printCharTree(BTree tree) {
   } //Questo ciclo viene ripetuto finchè non vengono stampati tutti gli elementi pian piano inseriti nella coda
   free(queue); //Infine liberiamo la memoria della coda, visto che non è più necessaria
 }
+
+void insertNode(BTree t, Item item) {
+	if(!isEmptyTree(t->left)) insertNode(t->left,item);
+	else {
+		t->left=buildTree(NULL,NULL,item);
+	}
+}

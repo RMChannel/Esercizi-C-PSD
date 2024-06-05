@@ -187,3 +187,17 @@ void printCharTree(BTree tree) {
   } //Questo ciclo viene ripetuto finchè non vengono stampati tutti gli elementi pian piano inseriti nella coda
   free(queue); //Infine liberiamo la memoria della coda, visto che non è più necessaria
 }
+
+void realCountNodes(BTree t, int *n) {
+	if(!isEmptyTree(t)) {
+		if(!isEmptyTree(t->right)) (*n)++;
+		realCountNodes(t->left,n);
+		realCountNodes(t->right,n);
+	}
+}
+
+int countNodes(BTree t) {
+	int n=0;
+	realCountNodes(t,&n);
+	return n;
+}

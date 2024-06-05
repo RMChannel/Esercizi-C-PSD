@@ -187,3 +187,9 @@ void printCharTree(BTree tree) {
   } //Questo ciclo viene ripetuto finchè non vengono stampati tutti gli elementi pian piano inseriti nella coda
   free(queue); //Infine liberiamo la memoria della coda, visto che non è più necessaria
 }
+
+void removeNode(BTree tr) {
+	tr->left=NULL;
+	tr->right=NULL;
+	tr->value=NULL;
+}

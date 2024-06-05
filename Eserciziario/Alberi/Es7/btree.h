@@ -12,3 +12,4 @@ BTree getRight(BTree);
 BTree newRandomTree(int);
 void printCharTree(BTree bt);
 void printTree(BTree);
+Item countNodes(BTree t, int i);

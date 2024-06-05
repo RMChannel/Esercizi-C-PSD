@@ -176,7 +176,7 @@ void printTree(BTree bt){
 	}
 }
 
-void printCharTree(BTree tree) {
+void printPerLevel(BTree tree) {
   Queue queue=newQueue(); //Ci creiamo una coda
   enqueue(queue,tree); //Aggiungiamo il ramo iniziale
   while(!isEmptyQueue(queue)) { //Finché la coda non è vuota
@@ -186,4 +186,14 @@ void printCharTree(BTree tree) {
     outputItem(temp->value); //E alla fine viene stampato tutto
   } //Questo ciclo viene ripetuto finchè non vengono stampati tutti gli elementi pian piano inseriti nella coda
   free(queue); //Infine liberiamo la memoria della coda, visto che non è più necessaria
+}
+
+int identyAlbero(BTree t1, BTree t2) {
+	if(isEmptyTree(t1) && !isEmptyTree(t2)) return 0;
+	else if(!isEmptyTree(t1) && isEmptyTree(t2)) return 0;
+	else if(isEmptyTree(t1) && isEmptyTree(t2)) return 1;
+	else if(cmpItem(t1,t2)!=0) return 0;
+	else {
+		return (identyAlbero(t1->left,t2->left) && identyAlbero(t1->right,t2->right));
+	}
 }

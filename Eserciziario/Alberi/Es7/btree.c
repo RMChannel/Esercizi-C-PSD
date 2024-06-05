@@ -187,3 +187,26 @@ void printCharTree(BTree tree) {
   } //Questo ciclo viene ripetuto finchè non vengono stampati tutti gli elementi pian piano inseriti nella coda
   free(queue); //Infine liberiamo la memoria della coda, visto che non è più necessaria
 }
+
+Item realCountNodes(BTree t, Item i) {
+	if(!isEmptyTree(t)) {
+		if(cmpItem(i,t->value)==0) return t->value;
+		else {
+			Item temp1=realCountNodes(t->left,i);
+			Item temp2=realCountNodes(t->right,i);
+			if(temp1!=NULL) return temp1;
+			else if(temp2!=NULL) return temp2;
+		};
+	}
+	else return NULL;
+}
+
+Item countNodes(BTree t, int i) {
+	int *n=malloc(sizeof(int));
+	(*n)=i;
+	Item item=realCountNodes(t,n);
+	free(n);
+	if(item==NULL) printf("NULL");
+	else printf("Trovato\n");
+	return item;
+}

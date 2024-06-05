@@ -10,5 +10,7 @@ BTree getLeft(BTree);
 BTree getRight(BTree);
 
 BTree newRandomTree(int);
-void printCharTree(BTree bt);
+void printPerLevel(BTree bt);
 void printTree(BTree);
+int countNodes(BTree t);
+int identyAlbero(BTree t1, BTree t2);

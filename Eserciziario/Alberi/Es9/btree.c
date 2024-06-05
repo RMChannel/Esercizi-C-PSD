@@ -176,7 +176,7 @@ void printTree(BTree bt){
 	}
 }
 
-void printCharTree(BTree tree) {
+void printPerLevel(BTree tree) {
   Queue queue=newQueue(); //Ci creiamo una coda
   enqueue(queue,tree); //Aggiungiamo il ramo iniziale
   while(!isEmptyQueue(queue)) { //Finché la coda non è vuota

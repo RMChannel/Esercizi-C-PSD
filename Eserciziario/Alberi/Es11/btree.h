@@ -8,7 +8,6 @@ BTree buildTree(BTree, BTree, Item);
 Item getBTreeRoot(BTree);
 BTree getLeft(BTree);
 BTree getRight(BTree);
-
-BTree newRandomTree(int);
-void printCharTree(BTree bt);
-void printTree(BTree);
+void preOrder(BTree);
+void postOrder(BTree);
+void inOrder(BTree);
