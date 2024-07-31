@@ -6,50 +6,38 @@
 #include "stack.h"
 #include "btree.h"
 
-int searchRoute(BTree t, Stack stack) {
-    if(isEmptyTree(getLeft(t)) && isEmptyTree(getRight(t))) {
-        return 1;
-    }
+int realMaxRoute(BTree t, Stack stack) {
+    if(isEmptyTree(getLeft(t)) && isEmptyTree(getRight(t))) return 1;
     else {
-        int n1=1000;
-        int n2=1000;
-        if(!isEmptyTree(getLeft(t))) n1=searchRoute(getLeft(t),stack);
-        if(!isEmptyTree(getRight(t))) n2=searchRoute(getRight(t),stack);
-        if(n1<n2) {
+        int n1=0;
+        int n2=0;
+        if(!isEmptyTree(getLeft(t))) n1=realMaxRoute(getLeft(t),stack);
+        if(!isEmptyTree(getRight(t))) n2=realMaxRoute(getRight(t),stack);
+        if(n1>n2) {
+            push(stack,getBTreeRoot(getLeft(t)));
             return n1+1;
         }
         else {
+            push(stack,getBTreeRoot(getRight(t)));
             return n2+1;
         }
     }
 }
 
-void realMinRoute(BTree t, Stack stack) {
-    int n1=1000;
-    int n2=1000;
-    if(!isEmptyTree(getLeft(t))) n1=searchRoute(getLeft(t),stack);
-    if(!isEmptyTree(getRight(t))) n2=searchRoute(getRight(t),stack);
-    if(n1==1000 && n2==1000) return;
-    else if(n1<n2) {
-        realMinRoute(getLeft(t),stack);
-        push(stack,getBTreeRoot(getLeft(t)));
-    }
-    else {
-        realMinRoute(getRight(t),stack);
-        push(stack,getBTreeRoot(getRight(t)));
-    }
-}
-
-void minRoute(BTree t) {
+void maxRoute(BTree t) {
     Stack stack=newStack();
-    realMinRoute(t,stack);
+    int n=realMaxRoute(t,stack);
     push(stack,getBTreeRoot(t));
-    printf("Stack: ");
-    printStack(stack);
-    printf("\n");
+    printf("STACK: ");
+    for(int i=0;i<n;i++) {
+        Item temp=top(stack);
+        pop(stack);
+        outputItem(temp);
+    }
     while(!isEmptyStack(stack)) pop(stack);
     free(stack);
 }
+
 
 int main() {
     char *e0=malloc(sizeof(char)*5);
@@ -82,6 +70,6 @@ int main() {
     BTree t2=buildTree(t4,t5,e2);
     BTree t1=buildTree(t3,NULL,e1);
     BTree t0=buildTree(t1,t2,e0);
-    minRoute(t0);
+    maxRoute(t0);
 }
 

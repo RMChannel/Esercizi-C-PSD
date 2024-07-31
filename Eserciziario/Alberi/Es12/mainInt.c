@@ -5,47 +5,34 @@
 #include "btree.h"
 #include "stack.h"
 
-int searchRoute(BTree t, Stack stack) {
-    if(isEmptyTree(getLeft(t)) && isEmptyTree(getRight(t))) {
-        return 1;
-    }
+int realMaxRoute(BTree t, Stack stack) {
+    if(isEmptyTree(getLeft(t)) && isEmptyTree(getRight(t))) return 1;
     else {
-        int n1=1000;
-        int n2=1000;
-        if(!isEmptyTree(getLeft(t))) n1=searchRoute(getLeft(t),stack);
-        if(!isEmptyTree(getRight(t))) n2=searchRoute(getRight(t),stack);
-        if(n1<n2) {
+        int n1=0;
+        int n2=0;
+        if(!isEmptyTree(getLeft(t))) n1=realMaxRoute(getLeft(t),stack);
+        if(!isEmptyTree(getRight(t))) n2=realMaxRoute(getRight(t),stack);
+        if(n1>n2) {
+            push(stack,getBTreeRoot(getLeft(t)));
             return n1+1;
         }
         else {
+            push(stack,getBTreeRoot(getRight(t)));
             return n2+1;
         }
     }
 }
 
-void realMinRoute(BTree t, Stack stack) {
-    int n1=1000;
-    int n2=1000;
-    if(!isEmptyTree(getLeft(t))) n1=searchRoute(getLeft(t),stack);
-    if(!isEmptyTree(getRight(t))) n2=searchRoute(getRight(t),stack);
-    if(n1==1000 && n2==1000) return;
-    else if(n1<n2) {
-        realMinRoute(getLeft(t),stack);
-        push(stack,getBTreeRoot(getLeft(t)));
-    }
-    else {
-        realMinRoute(getRight(t),stack);
-        push(stack,getBTreeRoot(getRight(t)));
-    }
-}
-
-void minRoute(BTree t) {
+void maxRoute(BTree t) {
     Stack stack=newStack();
-    realMinRoute(t,stack);
+    int n=realMaxRoute(t,stack);
     push(stack,getBTreeRoot(t));
-    printf("Stack: ");
-    printStack(stack);
-    printf("\n");
+    printf("STACK: ");
+    for(int i=0;i<n;i++) {
+        Item temp=top(stack);
+        pop(stack);
+        outputItem(temp);
+    }
     while(!isEmptyStack(stack)) pop(stack);
     free(stack);
 }
@@ -90,5 +77,5 @@ int main(){ //NON METTO TUTTI GLI ALBERI PERCHE' NON HO VOGLIA, MA FUNZIONA
     BTree t2=buildTree(t6,t5,n3);
     BTree t1=buildTree(t2,t3,n8);
     printTree(t1);
-    minRoute(t1);
+    maxRoute(t1);
 }
